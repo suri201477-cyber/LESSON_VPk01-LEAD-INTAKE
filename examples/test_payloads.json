@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Полная заявка с лендинга",
+    "expected_status": 200,
+    "body": {
+      "name": "Ирина",
+      "contact": "+79990000000",
+      "source": "landing",
+      "comment": "Хочу консультацию по тарифам"
+    }
+  },
+  {
+    "title": "Только обязательный contact",
+    "expected_status": 200,
+    "body": {
+      "contact": "+79991112233"
+    }
+  },
+  {
+    "title": "Заявка из Instagram",
+    "expected_status": 200,
+    "body": {
+      "name": "Павел",
+      "contact": "@pavel_leads",
+      "source": "instagram",
+      "comment": "Напишите стоимость базового тарифа"
+    }
+  },
+  {
+    "title": "Заявка из таблицы",
+    "expected_status": 200,
+    "body": {
+      "name": "Ольга",
+      "contact": "olga@example.com",
+      "source": "sheet",
+      "comment": "Перенос строки из Google-таблицы"
+    }
+  },
+  {
+    "title": "Нет поля contact",
+    "expected_status": 400,
+    "body": {
+      "name": "Без телефона",
+      "source": "landing",
+      "comment": "Забыли контакт"
+    }
+  },
+  {
+    "title": "Пустой contact",
+    "expected_status": 400,
+    "body": {
+      "name": "Анна",
+      "contact": "",
+      "source": "landing"
+    }
+  },
+  {
+    "title": "Contact из одних пробелов",
+    "expected_status": 400,
+    "body": {
+      "name": "Анна",
+      "contact": "   ",
+      "source": "landing"
+    }
+  },
+  {
+    "title": "Contact равен null",
+    "expected_status": 400,
+    "body": {
+      "name": "Анна",
+      "contact": null,
+      "source": "landing"
+    }
+  },
+  {
+    "title": "Битый JSON",
+    "expected_status": 400,
+    "raw": "{\"name\": \"Ирина\", "
+  },
+  {
+    "title": "Слишком длинный comment (маркер TOO_LONG скрипт заменяет на 2001 символ)",
+    "expected_status": 400,
+    "body": {
+      "name": "Игорь",
+      "contact": "+79990000001",
+      "source": "landing",
+      "comment": "TOO_LONG"
+    }
+  }
+]
